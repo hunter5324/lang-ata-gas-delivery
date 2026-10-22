@@ -1,0 +1,559 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lang`ata Gas Delivery</title>
+    <meta name="description"
+        content="Cooking gas refills delivered to your door in Lang`ata. Order on WhatsApp or call.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* ============ COLOURS: change these to restyle the whole site ============ */
+        :root {
+            --ink: #075085;
+            --page: #f3f6f7;
+            --water-soft: #E3F0FC;
+            --gas: #835505;
+            --gas-soft: #ecdeca;
+            --whatsapp: #128C48;
+            --white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+            background: var(--page);
+            color: var(--ink);
+            line-height: 1.5;
+            padding-bottom: 84px;
+            /* room for the phone bottom bar */
+        }
+
+        a {
+            color: inherit;
+        }
+
+        :focus-visible {
+            outline: 3px solid var(--ink);
+            outline-offset: 3px;
+        }
+
+        .wrap {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ---------- Top bar ---------- */
+        .topbar {
+            background: var(--ink);
+            color: var(--white);
+        }
+
+        .topbar .wrap {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding-top: 14px;
+            padding-bottom: 14px;
+        }
+
+        .brand {
+            font-weight: 800;
+            font-size: 1.15rem;
+            letter-spacing: -0.01em;
+            text-decoration: none;
+        }
+
+        .topbar nav {
+            display: flex;
+            gap: 18px;
+            font-size: 0.95rem;
+        }
+
+        .topbar nav a {
+            text-decoration: none;
+            opacity: 0.9;
+        }
+
+        .topbar nav a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+
+        /* ---------- Buttons ---------- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font: inherit;
+            font-weight: 600;
+            font-size: 1.05rem;
+            padding: 14px 22px;
+            border-radius: 12px;
+            border: 2px solid transparent;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .btn-whatsapp {
+            background: var(--whatsapp);
+            color: var(--white);
+        }
+
+        .btn-call {
+            background: var(--white);
+            color: var(--ink);
+            border-color: var(--ink);
+        }
+
+        .btn:hover {
+            filter: brightness(0.95);
+        }
+
+        .btn svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+            flex: none;
+        }
+
+        /* ---------- Hero ---------- */
+        .hero {
+            padding: 48px 0 40px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.1rem, 6vw, 3.6rem);
+            font-weight: 800;
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            max-width: 14em;
+        }
+
+        .hero p {
+            margin-top: 16px;
+            font-size: 1.15rem;
+            max-width: 34em;
+        }
+
+        .hero .actions {
+            margin-top: 26px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .hero .hours {
+            margin-top: 18px;
+            font-size: 0.95rem;
+            opacity: 0.8;
+        }
+
+        /* ---------- Product sections ---------- */
+        .section {
+            padding: 40px 0 44px;
+        }
+
+        .section.gas {
+            background: var(--gas-soft);
+            --accent: var(--gas);
+        }
+
+        .section.water {
+            background: var(--water-soft);
+            --accent: var(--water);
+        }
+
+        .section-head {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 6px;
+        }
+
+        .section-head svg {
+            width: 44px;
+            height: 44px;
+            flex: none;
+            fill: var(--accent);
+        }
+        .section h2 {
+            font-size: clamp(1.7rem, 4.5vw, 2.4rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        .section .hint {
+            margin: 4px 0 22px;
+            font-size: 1rem;
+        }
+
+        .section .hint a {
+            font-weight: 600;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 14px;
+        }
+
+        /* Each product is one big tappable button */
+        .product {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 18px;
+            min-height: 130px;
+            padding: 18px;
+            background: var(--white);
+            color: var(--ink);
+            border: 2px solid var(--accent);
+            border-radius: 14px;
+            text-decoration: none;
+        }
+
+        .product:hover,
+        .product:focus-visible {
+            background: var(--accent);
+            color: var(--white);
+        }
+
+        .p-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            line-height: 1.25;
+        }
+
+        .p-price {
+            font-size: 1.7rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        /* ---------- Footer ---------- */
+        footer {
+            padding: 34px 0 20px;
+        }
+
+        footer .wrap {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 16px;
+            font-size: 0.95rem;
+        }
+
+        footer strong {
+            font-weight: 800;
+        }
+
+        /* ---------- Bottom bar on phones ---------- */
+        .bottombar {
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 10;
+            display: flex;
+            gap: 10px;
+            padding: 10px 12px calc(10px + env(safe-area-inset-bottom, 0px));
+            background: var(--white);
+            border-top: 1px solid rgba(18, 38, 58, 0.15);
+        }
+
+        .bottombar .btn {
+            flex: 1;
+            padding: 12px 10px;
+        }
+
+        @media (min-width: 720px) {
+            body {
+                padding-bottom: 0;
+            }
+
+            .bottombar {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .topbar nav {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ============ TOP BAR ============ -->
+    <header class="topbar">
+        <div class="wrap">
+            <a class="brand" href="#top" data-business>Lang`ata Gas </a>
+            <nav aria-label="Jump to section">
+                <a href="#gas">GAS</a>
+                
+            </nav>
+        </div>
+    </header>
+
+    <!-- ============ HERO ============ -->
+    <main id="top">
+        <section class="hero">
+            <div class="wrap">
+                <h1>Gas delivered to your door in Lang`ata, Karen, Kilimani and Kileleshwa</h1>
+                <p>Pick what you need below. Your order opens in WhatsApp, or you can call us directly.</p>
+                <div class="actions">
+                    <a class="btn btn-whatsapp" data-action="whatsapp" href="#" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path
+                                d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.15c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23s8.23 3.69 8.23 8.23-3.7 8.24-8.23 8.24zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07s.89 2.4 1.01 2.56c.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.23-.16-.48-.29z" />
+                        </svg>
+                        Order on WhatsApp
+                    </a>
+                    <a class="btn btn-call" data-action="call" href="#">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path
+                                d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.37 2.3.57 3.6.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.6 21 3 13.4 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.6a1 1 0 0 1-.25 1z" />
+                        </svg>
+                        Call <span data-phone-text>0743458644</span>
+                    </a>
+                </div>
+                <p class="hours">Open every day, 24/7 . Delivery within Lang`ata and nearby estates.</p>
+            </div>
+        </section>
+
+        <!-- ============ GAS SECTION ============
+       To add a product: copy one whole <a class="product"> block, paste it inside the grid, and change the name and price.
+       To remove a product: delete its block. -->
+        <section class="section gas" id="gas">
+            <div class="wrap">
+                <div class="section-head">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path
+                            d="M9 2h6v2h-1v1.1c2.3.5 4 2.5 4 4.9v10a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V10c0-2.4 1.7-4.4 4-4.9V4H9V2zm-1 9v3h8v-3H8z" />
+                    </svg>
+                    <h2>Cooking gas refills</h2>
+                </div>
+                <p class="hint">Tap a cylinder to order it on WhatsApp. Prefer to talk? <a data-action="call"
+                        href="#">Call us</a>.</p>
+
+                <div class="grid">
+                    <a class="product" data-order href="#">
+                        <img src="shopping.webp" alt="Gas cylinder"
+                            style="width: 200px; height: auto; margin-bottom: 0px;">
+                            <span class="p-name">6kg pro gas </span>
+                            <span class="p-price">KES 1300</span>
+                    </a>
+                    <a class="product" data-order href="#">
+                        <img src="images (1).jpg" alt="Gas cylinder"
+                            style="width: 200px; height: auto; margin-bottom: 0px;">
+                            <span class="p-name">6kg total gas </span>
+                            <span class="p-price">KES 1,300</span>
+                    </a>
+                    <a class="product" data-order href="#">
+                        <img src="images (12).jpg" alt="Gas cylinder"
+                            style="width: 200px; height: auto; margin-bottom: 0px;">
+                            <span class="p-name">6kg Afrigas gas </span>
+                            <span class="p-price">KES 1,300</span>
+                    </a>
+                    <a class="product" data-order href="#">
+                        <img src="shopping (2).webp" alt="Gas cylinder"
+                            style="width: 200px; height: auto; margin-bottom: 0px;">
+                            <span class="p-name">6kg Ola energy gas</span>
+                            <span class="p-price">KES 1,300</span>
+                    </a>
+                    <a class="product" data-order href="#">
+                        <img src="images (14).jpg" alt="Gas cylinder"
+                            style="width: 200px; height: auto; margin-bottom: 0px;">
+                            <span class="p-name">6kg Amaan gas</span>
+                            <span class="p-price">KES 1,300</span>
+                    </a>
+                    <a class="product" data-order href="#">
+                        <img src="images (13).jpg" alt="Gas cylinder"
+                            style="width: 200px; height: auto; margin-bottom: 0px;">
+                            <span class="p-name">6kg Top gas </span>
+                            <span class="p-price">KES 1,300</span>
+                    </a>
+                    <a class="product" data-order href="#">
+                        <img src="images (10).jpg" alt="Gas cylinder"
+                            style="width: 200px; height: auto; margin-bottom: 0px;">
+                            <span class="p-name">6kg Oilibya gas</span>
+                            <span class="p-price">KES 2900</span>
+                    </a>
+                    <a class="product" data-order href="#">
+                        <img src="images (11).jpg" alt="Gas cylinder"
+                            style="width: 200px; height: auto; margin-bottom: 0px;">
+                            <span class="p-name">6kg Galana gas</span>
+                            <span class="p-price">KES 2900</span>
+                    </a>
+
+                    <a class="product" data-order href="#">
+                        <img src="images (4).jpg" alt="Gas cylinder"
+                            style="width: 200px; height: auto; margin-bottom: 0px;">
+                            <span class="p-name">13kg Ola energy gas</span>
+                            <span class="p-price">KES 2,900</span>
+                    </a>
+                    
+                    </a>
+                    <a class="product" data-order href="#">
+                        <img src="images (2).jpg" alt="Gas cylinder"
+                            style="width: 200px; height: auto; margin-bottom: 0px;">
+                            <span class="p-name">13kg k-gas gas</span>
+                            <span class="p-price">KES 2,900</span>
+                    </a>
+                    <a class="product" data-order href="#">
+                        <img src="images (5).jpg" alt="Gas cylinder"
+                            style="width: 200px; height: auto; margin-bottom: 0px;">
+                            <span class="p-name">13kg Lake-gas</span>
+                            <span class="p-price">KES 2,900</span>
+                    </a>
+                    <a class="product" data-order href="#">
+                        <img src="images (6).jpg" alt="Gas cylinder"
+                            style="width: 200px; height: auto; margin-bottom: 0px;">
+                            <span class="p-name">13kg PRO gas</span>
+                            <span class="p-price">KES 2,900</span>
+                    </a>
+                    <a class="product" data-order href="#">
+                        <img src="shopping (6).webp" alt="Gas cylinder"
+                            style="width: 200px; height: auto; margin-bottom: 0px;">
+                            <span class="p-name">13kg Hashi gas</span>
+                            <span class="p-price">KES 2,900</span>
+                    </a>
+                    <a class="product" data-order href="#">
+                        <img src="images (7).jpg" alt="Gas cylinder"
+                            style="width: 200px; height: auto; margin-bottom: 0px;">
+                            <span class="p-name">13kg safe gas</span>
+                            <span class="p-price">KES 2,900</span>
+                    </a>
+                    <a class="product" data-order href="#">
+                        <img src="images (8).jpg" alt="Gas cylinder"
+                            style="width: 200px; height: auto; margin-bottom: 0px;">
+                            <span class="p-name">13kg Galana gas</span>
+                            <span class="p-price">KES 2,900</span>
+                    </a>
+                    <a class="product" data-order href="#">
+                        <img src="images (9).jpg" alt="Gas cylinder"
+                            style="width: 200px; height: auto; margin-bottom: 0px;">
+                            <span class="p-name">13kg safe gas</span>
+                            <span class="p-price">KES 2,900</span>
+                    </a>
+                   
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ============ FOOTER ============ -->
+    <footer>
+        <div class="wrap">
+            <div>
+                <strong data-business>Lang`ata Gas </strong><br>
+                Lang`ata, Nairobi
+            </div>
+            <div>
+                Call: <a data-action="call" href="#" data-phone-text>0743458644</a><br>
+                WhatsApp: <a data-action="whatsapp" href="#" target="_blank" rel="noopener" data-phone-text>0743 458 644</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Fixed Call / WhatsApp bar, shown on phones only -->
+    <div class="bottombar">
+        <a class="btn btn-call" data-action="call" href="#">Call</a>
+        <a class="btn btn-whatsapp" data-action="whatsapp" href="#" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+
+    <script>
+        /* =====================================================================
+           EDIT THIS BLOCK. It controls every phone number and message on the site.
+           ===================================================================== */
+        var CONFIG = {
+            // Business name shown in the top bar and footer
+            businessName: "Lang`ata Gas delivery",
+
+            // Phone number in international format: country code + number, digits only.
+            // Example: 0712 345 678 becomes 254712345678
+            phoneInternational: "254743458644",
+
+            // How the number looks on the page
+            phoneDisplay: "0743 458 644",
+
+            // Message used when someone taps a general "Order on WhatsApp" button
+            whatsappGeneral: "Hello, I would like to place an order.",
+
+            // First line of the message when someone taps a product.
+            // The product name and price are added automatically below this line.
+            whatsappProductIntro: "Hello, I would like to order:",
+
+            // Last line of every product message
+            whatsappProductEnding: "Delivery location:"
+        };
+        /* ===================== end of editable block ===================== */
+
+        (function () {
+            var waBase = "https://wa.me/" + CONFIG.phoneInternational + "?text=";
+            var telLink = "tel:+" + CONFIG.phoneInternational;
+
+            function clean(text) { return text.replace(/\s+/g, " ").trim(); }
+
+            // Business name
+            document.querySelectorAll("[data-business]").forEach(function (el) {
+                el.textContent = CONFIG.businessName;
+            });
+            document.title = CONFIG.businessName + " | Delivery in Kileleshwa";
+
+            // Phone number text
+            document.querySelectorAll("[data-phone-text]").forEach(function (el) {
+                el.textContent = CONFIG.phoneDisplay;
+            });
+
+            // Call buttons
+            document.querySelectorAll('[data-action="call"]').forEach(function (el) {
+                el.setAttribute("href", telLink);
+            });
+
+            // General WhatsApp buttons
+            document.querySelectorAll('[data-action="whatsapp"]').forEach(function (el) {
+                el.setAttribute("href", waBase + encodeURIComponent(CONFIG.whatsappGeneral));
+            });
+
+            // Product buttons: read the name and price straight from the page
+            document.querySelectorAll("[data-order]").forEach(function (el) {
+                var name = clean(el.querySelector(".p-name").textContent);
+                var price = clean(el.querySelector(".p-price").textContent);
+                var message = CONFIG.whatsappProductIntro + "\n" +
+                    name + " (" + price + ")\n" +
+                    CONFIG.whatsappProductEnding + " ";
+                el.setAttribute("href", waBase + encodeURIComponent(message));
+                el.setAttribute("target", "_blank");
+                el.setAttribute("rel", "noopener");
+                el.setAttribute("aria-label", "Order " + name + " for " + price + " on WhatsApp");
+            });
+        })();
+    </script>
+
+</body>
+
+</html>
